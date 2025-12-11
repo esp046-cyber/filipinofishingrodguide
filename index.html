@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filipino Fishing Rod Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7dd3fc 100%);
+            min-height: 100vh;
+            padding: 1%;
+        }
+        
+        .container {
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 1%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0f172a, #1e40af);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 1%;
+            border: 3px solid #3b82f6;
+        }
+        
+        h1 {
+            font-size: 1.3em;
+            margin-bottom: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 0.75em;
+            opacity: 0.9;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 1%;
+            margin-bottom: 1%;
+            overflow-x: auto;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 10px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 80px;
+        }
+        
+        .tab:hover {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            transform: translateY(-2px);
+        }
+        
+        .tab.active {
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
+        }
+        
+        .content {
+            display: none;
+        }
+        
+        .content.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .rod-card {
+            background: white;
+            border: 2px solid #3b82f6;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 1%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        
+        .rod-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+        }
+        
+        .rod-card h3 {
+            color: #1e40af;
+            font-size: 1em;
+            margin-bottom: 6px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 4px;
+        }
+        
+        .rod-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: 0.8em;
+        }
+        
+        .detail-item {
+            background: #f0f9ff;
+            padding: 6px;
+            border-radius: 5px;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: #1e40af;
+            font-size: 0.85em;
+        }
+        
+        .detail-value {
+            color: #334155;
+            margin-top: 2px;
+        }
+        
+        .fish-species {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            padding: 8px;
+            border-radius: 8px;
+            margin-top: 8px;
+            border: 2px solid #10b981;
+        }
+        
+        .fish-species h4 {
+            color: #047857;
+            font-size: 0.85em;
+            margin-bottom: 4px;
+        }
+        
+        .fish-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        
+        .fish-tag {
+            background: #059669;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: bold;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 1%;
+        }
+        
+        .tip-box h3 {
+            color: #92400e;
+            font-size: 0.9em;
+            margin-bottom: 6px;
+        }
+        
+        .tip-box p {
+            color: #78350f;
+            font-size: 0.75em;
+            line-height: 1.4;
+        }
+        
+        .location-card {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border: 2px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 1%;
+        }
+        
+        .location-card h3 {
+            color: #075985;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+        }
+        
+        .location-info {
+            font-size: 0.75em;
+            color: #0c4a6e;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 1%;
+            padding: 10px;
+            color: white;
+            font-size: 0.7em;
+            background: linear-gradient(135deg, #0f172a, #1e40af);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎣 Filipino Fishing Rod Guide</h1>
+            <div class="subtitle">Your Complete Guide to Fishing in the Philippines</div>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('freshwater')">Freshwater</button>
+            <button class="tab" onclick="showTab('saltwater')">Saltwater</button>
+            <button class="tab" onclick="showTab('tips')">Tips</button>
+            <button class="tab" onclick="showTab('locations')">Locations</button>
+            <button class="tab" onclick="showTab('techniques')">Techniques</button>
+            <button class="tab" onclick="showTab('gear')">Gear</button>
+            <button class="tab" onclick="showTab('baits')">Baits</button>
+            <button class="tab" onclick="showTab('knots')">Knots</button>
+        </div>
+        
+        <div id="freshwater" class="content active">
+            <div class="rod-card">
+                <h3>🐟 Light Spinning Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">5-6 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Light-Medium</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">4-8 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱800-2,500</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Tilapia</span>
+                        <span class="fish-tag">Hito</span>
+                        <span class="fish-tag">Ayungin</span>
+                        <span class="fish-tag">Kanduli</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🐠 Medium Casting Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">6-7 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Medium-Heavy</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">10-20 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱1,500-4,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Snakehead</span>
+                        <span class="fish-tag">Largemouth Bass</span>
+                        <span class="fish-tag">Janitor Fish</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🎋 Bamboo Pole (Traditional)</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">8-12 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Light</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">2-6 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱200-800</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Tilapia</span>
+                        <span class="fish-tag">Dalag</span>
+                        <span class="fish-tag">Martiniko</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🎣 Telescopic Rod (Portable)</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">6-10 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Light-Medium</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">6-12 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱600-2,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Travel Fishing</span>
+                        <span class="fish-tag">General Freshwater</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🎣 Fly Fishing Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">8-9 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Weight</div>
+                        <div class="detail-value">5-7 wt</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Type</div>
+                        <div class="detail-value">Floating/Sinking</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱3,000-15,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Trout (Mountain streams)</span>
+                        <span class="fish-tag">Tilapia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="saltwater" class="content">
+            <div class="rod-card">
+                <h3>🌊 Surf Casting Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">9-12 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Medium-Heavy</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">15-30 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱2,500-8,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Talakitok</span>
+                        <span class="fish-tag">Lapu-lapu</span>
+                        <span class="fish-tag">Maya-maya</span>
+                        <span class="fish-tag">Tanigue</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>⛵ Boat Jigging Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">5-6 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Heavy-Extra Heavy</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">30-80 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱3,000-12,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Tuna</span>
+                        <span class="fish-tag">Barracuda</span>
+                        <span class="fish-tag">Giant Trevally</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🎣 Trolling Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">6-7 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Extra Heavy</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">50-130 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱4,000-15,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Marlin</span>
+                        <span class="fish-tag">Sailfish</span>
+                        <span class="fish-tag">Mahi-mahi</span>
+                        <span class="fish-tag">Wahoo</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🏖️ Popping Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">7-8 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Medium-Heavy</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">30-80 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱5,000-20,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">GT (Giant Trevally)</span>
+                        <span class="fish-tag">Talakitok</span>
+                        <span class="fish-tag">Barracuda</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🎣 Inshore Spinning Rod</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Length</div>
+                        <div class="detail-value">7-8 feet</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Power</div>
+                        <div class="detail-value">Medium-Light</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Line Weight</div>
+                        <div class="detail-value">10-20 lbs</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Price Range</div>
+                        <div class="detail-value">₱2,000-6,000</div>
+                    </div>
+                </div>
+                <div class="fish-species">
+                    <h4>Best For:</h4>
+                    <div class="fish-list">
+                        <span class="fish-tag">Samaral</span>
+                        <span class="fish-tag">Kitang</span>
+                        <span class="fish-tag">Alumahan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="tips" class="content">
+            <div class="tip-box">
+                <h3>💡 Choosing Your First Rod</h3>
+                <p>For beginners, start with a 6-foot medium power spinning rod. It's versatile for both freshwater and light saltwater fishing. Budget around ₱1,500-3,000 for a decent starter combo.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🌤️ Best Fishing Times</h3>
+                <p>Early morning (4-7 AM) and late afternoon (4-7 PM) are prime fishing hours. Fish are most active during cooler parts of the day. Avoid midday heat when fish go deeper.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Rod Maintenance</h3>
+                <p>Always rinse your rod with fresh water after saltwater use. Store rods horizontally or vertically, never leaning. Check guides for cracks and line for wear regularly.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪝 Line Selection</h3>
+                <p>Use monofilament for beginners (₱100-300/spool). It's forgiving and easy to handle. Upgrade to braided line (₱400-1,500) for better sensitivity and strength when experienced.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🦐 Live Bait Tips</h3>
+                <p>Popular baits: Alamang (shrimp), small fish, worms. Keep live bait in aerated containers. For tilapia, use bread or rice. For saltwater, squid and sardines work great.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>⚖️ Know the Laws</h3>
+                <p>Respect closed seasons and size limits. Don't fish in protected areas. Get permits when required. Practice catch and release for undersized fish. Help preserve our waters!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🌧️ Weather Reading</h3>
+                <p>Overcast days are great for fishing - fish feel safer and feed more. Before typhoons, fish feed heavily. After heavy rains, wait 1-2 days for water to clear. Check moon phases - new/full moons increase fish activity.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Casting Accuracy</h3>
+                <p>Practice in your backyard without hooks. Aim for buckets at different distances. Use your wrist, not just your arm. Keep rod tip at 10-11 o'clock position for best distance and accuracy.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Essential Knots</h3>
+                <p>Learn these 3 knots: Improved Clinch (hook to line), Palomar (strongest), Double Surgeon's (joining lines). Practice at home until you can tie them with eyes closed. Strong knots = more fish landed!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🧊 Keep Your Catch Fresh</h3>
+                <p>Bring ice chest with ice. Gut fish immediately after catching. Store in ice, don't let fish sit in water. For longer trips, layer fish and ice. Add salt to ice for colder temperature.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🦟 Comfort Tips</h3>
+                <p>Wear long sleeves for sun protection. Bring mosquito repellent (especially freshwater). Use polarized sunglasses to see fish in water. Stay hydrated - bring 2L water per person. Wear non-slip shoes.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>💰 Budget Setup</h3>
+                <p>Total starter kit ₱2,000-3,000: Rod/reel combo (₱1,500), Line (₱200), Hooks/sinkers/swivels (₱300), Tackle box (₱200), Basic lures (₱500). Start simple, upgrade gradually as you learn what works.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>📱 Safety First</h3>
+                <p>Always tell someone where you're fishing. Bring fully charged phone in waterproof bag. Fish with a buddy when possible. Know basic first aid for hook injuries. Bring emergency contact numbers.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🌊 Reading Water Currents</h3>
+                <p>Fish face upstream in rivers. Look for eddies behind rocks - fish rest there. In surf, fish feed in troughs between sandbars. Slack tide = less current, easier fishing. Moving water = active fish.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🐟 Fish Behavior Signs</h3>
+                <p>Birds diving = baitfish school below. Ripples/splashes on surface = feeding fish. Jumping fish = chasing prey. Early morning/evening = shallow water feeding. Midday = deeper, cooler water.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Structure Fishing</h3>
+                <p>Fish love structure: rocks, logs, drop-offs, weed edges, bridge pilings. Cast near, not on structure. Expect snags - worth it for bigger fish. Use weedless rigs in heavy cover.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>💪 Fighting Fish Tips</h3>
+                <p>Keep rod tip up at 45°. Let rod and drag do the work, not your arms. Never point rod at fish when reeling. Pump and reel: lift rod, reel on drop. Tire fish before netting.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎣 Landing Fish Safely</h3>
+                <p>Lead fish head-first into net. For big fish, beach them or use gaff. Wet hands before handling fish. Support body weight horizontally. Minimize air time for catch-release.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>📏 Size & Bag Limits</h3>
+                <p>Know local regulations! Common minimums: Lapu-lapu 10", Talakitok 12", Tuna 18". Take only what you'll eat. Release breeding-size fish. Report violations to authorities.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🧪 Water Quality Indicators</h3>
+                <p>Clear water = lighter line, natural baits. Murky water = bright lures, strong scents. Green tint = algae bloom, fish shallow. Brown = runoff, wait 1-2 days. Fish avoid polluted areas.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>⏰ Seasonal Patterns</h3>
+                <p>Dec-Feb: Cooler, fish slower/deeper. Mar-May: Pre-summer feeding frenzy, best season! Jun-Aug: Hot, fish early/late only. Sep-Nov: Post-typhoon recovery, great fishing resumes.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎒 Day Trip Checklist</h3>
+                <p>Rod/reel, tackle box, cooler with ice, water 2L/person, snacks, hat, sunscreen, towel, extra shirt, rain jacket, first aid kit, phone, ID, cash, trash bag. Always leave no trace!</p>
+            </div>
+        </div>
+        
+        <div id="locations" class="content">
+            <div class="location-card">
+                <h3>🏞️ Laguna Lake</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Freshwater<br>
+                    <strong>Fish:</strong> Tilapia, Hito, Ayungin, Dalag<br>
+                    <strong>Best Rod:</strong> Light-Medium Spinning Rod<br>
+                    <strong>Access:</strong> Multiple entry points in Rizal, Laguna<br>
+                    <strong>Tips:</strong> Best during early morning. Bring mosquito repellent!
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🌊 Manila Bay</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Saltwater<br>
+                    <strong>Fish:</strong> Talakitok, Lapu-lapu, Alumahan<br>
+                    <strong>Best Rod:</strong> Surf Casting or Medium Spinning<br>
+                    <strong>Access:</strong> Various piers and breakwaters<br>
+                    <strong>Tips:</strong> Check tide schedules. High tide is best.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🏖️ Subic Bay</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Saltwater<br>
+                    <strong>Fish:</strong> Barracuda, Tuna, Snapper, Grouper<br>
+                    <strong>Best Rod:</strong> Heavy Spinning or Jigging Rod<br>
+                    <strong>Access:</strong> Boat charters available<br>
+                    <strong>Tips:</strong> Excellent for deep sea fishing. Book guides ahead.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🏞️ Taal Lake</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Brackish Water<br>
+                    <strong>Fish:</strong> Tawilis (endemic sardine), Maliputo<br>
+                    <strong>Best Rod:</strong> Light Spinning Rod<br>
+                    <strong>Access:</strong> Talisay, Batangas area<br>
+                    <strong>Tips:</strong> Unique fishing experience. Hire local guides.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🌴 Palawan Waters</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Saltwater<br>
+                    <strong>Fish:</strong> Marlin, Sailfish, GT, Mahi-mahi<br>
+                    <strong>Best Rod:</strong> Heavy Trolling or Jigging Rod<br>
+                    <strong>Access:</strong> Puerto Princesa, El Nido charters<br>
+                    <strong>Tips:</strong> World-class fishing. March-June is peak season.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🎣 Angat Dam</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Freshwater<br>
+                    <strong>Fish:</strong> Tilapia, Bighead Carp, Snakehead<br>
+                    <strong>Best Rod:</strong> Medium Spinning or Casting Rod<br>
+                    <strong>Access:</strong> Bulacan, permit required<br>
+                    <strong>Tips:</strong> Large fish possible. Bring sturdy gear.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🌊 Batangas Beaches</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Saltwater (Shore Fishing)<br>
+                    <strong>Fish:</strong> Lapu-lapu, Kitang, Alumahan, Bisugo<br>
+                    <strong>Best Rod:</strong> Medium Surf or Spinning Rod<br>
+                    <strong>Access:</strong> Anilao, Mabini, Nasugbu areas<br>
+                    <strong>Tips:</strong> Rocky areas hold more fish. Dawn is best time.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🏞️ Pantabangan Lake</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Freshwater Reservoir<br>
+                    <strong>Fish:</strong> Tilapia, Bighead Carp, Mudfish<br>
+                    <strong>Best Rod:</strong> Medium Spinning Rod<br>
+                    <strong>Access:</strong> Nueva Ecija, boat rental available<br>
+                    <strong>Tips:</strong> Deep water fishing. Use fish finder if available.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🎣 Marikina River</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Urban Freshwater<br>
+                    <strong>Fish:</strong> Tilapia, Hito, Martiniko<br>
+                    <strong>Best Rod:</strong> Light Spinning or Bamboo Pole<br>
+                    <strong>Access:</strong> Multiple points in Metro Manila<br>
+                    <strong>Tips:</strong> Catch and release recommended. Avoid after floods.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🌊 Zambales Coast</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Saltwater Shore Fishing<br>
+                    <strong>Fish:</strong> Talakitok, Maya-maya, Blue Marlin (boat)<br>
+                    <strong>Best Rod:</strong> Heavy Surf or Trolling Rod<br>
+                    <strong>Access:</strong> San Antonio, Iba beaches<br>
+                    <strong>Tips:</strong> Famous for big game fishing. Hire experienced guides.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🏞️ Caliraya Lake</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Freshwater Bass Lake<br>
+                    <strong>Fish:</strong> Largemouth Bass, Tilapia, Catfish<br>
+                    <strong>Best Rod:</strong> Medium Casting or Spinning Rod<br>
+                    <strong>Access:</strong> Laguna, resort/cottage rentals available<br>
+                    <strong>Tips:</strong> Bass fishing hotspot. Try crankbaits and soft plastics.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🌴 Siargao Waters</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Saltwater Sport Fishing<br>
+                    <strong>Fish:</strong> Tuna, Mahi-mahi, Wahoo, Sailfish<br>
+                    <strong>Best Rod:</strong> Heavy Jigging or Trolling Rod<br>
+                    <strong>Access:</strong> Boat charters from General Luna<br>
+                    <strong>Tips:</strong> World-class offshore fishing. Book multi-day trips.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🎣 Cagayan River</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Large River System<br>
+                    <strong>Fish:</strong> Ludong (rare), Banak, Tilapia, Snakehead<br>
+                    <strong>Best Rod:</strong> Medium-Heavy Spinning Rod<br>
+                    <strong>Access:</strong> Multiple points in Cagayan Valley<br>
+                    <strong>Tips:</strong> Longest river in PH. Diverse fish species.
+                </div>
+            </div>
+            
+            <div class="location-card">
+                <h3>🏖️ Bolinao Beaches</h3>
+                <div class="location-info">
+                    <strong>Type:</strong> Rocky Shore Fishing<br>
+                    <strong>Fish:</strong> Grouper, Snapper, Jacks, Barracuda<br>
+                    <strong>Best Rod:</strong> Medium Spinning or Popping Rod<br>
+                    <strong>Access:</strong> Pangasinan, various beach access points<br>
+                    <strong>Tips:</strong> Fish rocky points at dawn. Bring wading shoes.
+                </div>
+            </div>
+        </div>
+        
+        <div id="techniques" class="content">
+            <div class="tip-box">
+                <h3>🎣 Bottom Fishing Technique</h3>
+                <p><strong>Best for:</strong> Lapu-lapu, Maya-maya, Grouper<br><strong>Setup:</strong> Use sliding sinker rig with 2-3 oz weight. Hook size 2/0-5/0. Fresh bait (squid/fish chunks).<br><strong>Method:</strong> Drop to bottom, reel up 1-2 cranks. Wait 3-5 minutes. Set hook firmly when bite detected. Keep rod tip up while reeling.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🌊 Surf Casting Technique</h3>
+                <p><strong>Best for:</strong> Talakitok, Samaral, Alumahan<br><strong>Setup:</strong> 9-12ft rod, 3-5oz pyramid sinker, circle hooks 3/0-6/0.<br><strong>Method:</strong> Cast beyond breakers (50-100m). Let sinker settle. Tight line, rod in holder. Watch rod tip for bites. Let fish run with circle hooks before reeling.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Jigging Technique</h3>
+                <p><strong>Best for:</strong> Tuna, Talakitok, Tanigue<br><strong>Setup:</strong> Heavy jigging rod, 50-80lb braided line, 100-300g jigs.<br><strong>Method:</strong> Drop jig to depth. Fast jerk upward, let fall on slack line. Vary speed and rhythm. Bites come on fall or lift. React fast!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎐 Float Fishing (Freshwater)</h3>
+                <p><strong>Best for:</strong> Tilapia, Ayungin, Hito<br><strong>Setup:</strong> Bobber 3-6ft above hook, small split shot, #6-10 hook.<br><strong>Method:</strong> Set depth to 1ft above bottom. Cast near structure (logs, plants). Watch bobber closely. Set hook when bobber goes under or moves sideways.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🦐 Live Bait Fishing</h3>
+                <p><strong>Best for:</strong> Predator fish (Dalag, Snakehead, Tanguingue)<br><strong>Setup:</strong> Circle hook through lips or back. Small weight or none. Leader if targeting toothy fish.<br><strong>Method:</strong> Let bait swim naturally. Don't set hook immediately on bite - let fish run 3-5 seconds, then reel tight.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎪 Popping Technique</h3>
+                <p><strong>Best for:</strong> GT, Talakitok, Barracuda<br><strong>Setup:</strong> Heavy popping rod, 60-100lb braid, topwater popper lures.<br><strong>Method:</strong> Cast far. Let lure settle 2 seconds. Sharp downward jerk to create splash. Pause 1-2 seconds. Repeat. Explosive strikes!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🔄 Trolling Technique</h3>
+                <p><strong>Best for:</strong> Tuna, Marlin, Mahi-mahi<br><strong>Setup:</strong> Trolling rod, heavy line, skirted lures or live bait.<br><strong>Method:</strong> Boat speed 5-8 knots. Vary lure distances (20-100m behind boat). Watch for birds diving. When strike hits, stop boat and fight fish.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪝 Setting the Hook</h3>
+                <p><strong>J-Hooks:</strong> Quick, firm upward snap when bite felt. Set 2-3 times to ensure penetration.<br><strong>Circle Hooks:</strong> DON'T jerk! Let fish run, keep rod low, slowly lift and reel tight. Hook sets itself in corner of mouth.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎣 Drift Fishing</h3>
+                <p><strong>Best for:</strong> Covering large areas, rivers, offshore<br><strong>Method:</strong> Let boat/current carry you. Drop line straight down or at angle. Keep just enough weight to stay near bottom. Lift and drop rod tip every few seconds. Feel for bites on drop.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🌙 Night Fishing Tips</h3>
+                <p><strong>Best for:</strong> Big catfish, snapper, grouper<br><strong>Setup:</strong> Use glow sticks or lighted bobbers. Heavier line (fish can't see it). Strong scented baits.<br><strong>Safety:</strong> Bring headlamp, know your spot in daylight first. Fish with partner. More active bites but harder landing!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Sight Fishing Technique</h3>
+                <p><strong>Best for:</strong> Clear shallow water, flats<br><strong>Method:</strong> Wear polarized glasses. Move slowly, watch for shadows/movement. Cast ahead of fish path. Let lure sink, twitch slowly. Takes patience but very rewarding!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🔄 Retrieve Variations</h3>
+                <p><strong>Steady:</strong> Constant speed, good for active fish.<br><strong>Stop-and-Go:</strong> Reel, pause 2 secs, repeat. Triggers strikes.<br><strong>Twitching:</strong> Small rod tip jerks while reeling. Erratic prey action.<br><strong>Burning:</strong> Fast retrieve, reaction strikes. Experiment until you find what works!</p>
+            </div>
+        </div>
+        
+        <div id="gear" class="content">
+            <div class="rod-card">
+                <h3>🎣 Reel Types Guide</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Spinning Reel</div>
+                        <div class="detail-value">Best for beginners. Easy casting. ₱800-5,000. Size 2000-4000 for general use.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Baitcasting Reel</div>
+                        <div class="detail-value">More control, accuracy. Learning curve. ₱2,000-10,000. For experienced anglers.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Overhead/Trolling</div>
+                        <div class="detail-value">Heavy duty, big fish. ₱3,000-15,000. For boat fishing, big game.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Fixed Spool</div>
+                        <div class="detail-value">Simple, reliable. ₱300-1,500. Traditional Filipino style, still effective.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🧵 Line Types Explained</h3>
+                <p><strong>Monofilament (Mono):</strong> Stretches, forgiving, cheap. ₱100-500. Best for beginners and live bait.<br><strong>Braided:</strong> No stretch, sensitive, strong. ₱400-2,000. Best for jigging and feel.<br><strong>Fluorocarbon:</strong> Invisible underwater. ₱300-1,500. Best for leader material in clear water.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪝 Hook Selection</h3>
+                <p><strong>Size Guide:</strong> #10-6 (small fish/bait), #4-1 (medium fish), 1/0-6/0 (large fish), 8/0+ (giant fish like marlin).<br><strong>Types:</strong> J-hooks (set yourself), Circle hooks (auto-set, better for catch-release), Treble hooks (for lures only).</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>⚖️ Sinker Types</h3>
+                <p><strong>Split Shot:</strong> Small, adjustable. For light fishing.<br><strong>Egg Sinker:</strong> Slides on line. Bottom fishing.<br><strong>Pyramid:</strong> Holds in sand/current. Surf fishing.<br><strong>Bank:</strong> Rocks/structure. Freshwater.<br><strong>Weights:</strong> 1/4-1oz (light), 1-3oz (medium), 3-8oz (heavy surf).</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎨 Lure Categories</h3>
+                <p><strong>Soft Plastics:</strong> ₱50-300. Versatile, lifelike. Shads, worms, creature baits.<br><strong>Hard Baits:</strong> ₱200-800. Crankbaits, jerkbaits. Durable.<br><strong>Topwater:</strong> ₱300-1,500. Poppers, walk-the-dog. Exciting strikes!<br><strong>Jigs:</strong> ₱100-2,000. Metal jigs for deep water. Very effective.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎒 Essential Tackle Box</h3>
+                <p><strong>Must-haves:</strong> Variety of hooks (6 sizes), Split shot/egg sinkers, Swivels (various sizes), Pliers/forceps, Line cutters, Extra line spool, Small knife, Hook remover, First aid kit, Measuring tape, Zip-lock bags for trash.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🧤 Accessories Worth Buying</h3>
+                <p><strong>Immediate:</strong> Polarized sunglasses (₱300-2,000), Fishing pliers (₱200-800), Rod holder (₱150-500).<br><strong>Later:</strong> Fish gripper (₱300-1,000), Landing net (₱500-2,000), Headlamp (₱200-800), Cooler box (₱1,000-5,000).</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🔧 Maintenance Must-Do</h3>
+                <p><strong>After saltwater:</strong> Rinse with fresh water (rod, reel, lures). Dry completely. Oil reel bearings monthly.<br><strong>Storage:</strong> Loosen drag. Store rods horizontally or vertically. Keep reels in dry place. Check line for wear before trips. Replace line yearly.</p>
+            </div>
+        </div>
+        
+        <div id="baits" class="content">
+            <div class="rod-card">
+                <h3>🦐 Live Baits (Saltwater)</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Hipon/Shrimp</div>
+                        <div class="detail-value">Best all-around. Hook through tail. ₱50-150/dozen. Target: Most saltwater fish.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Pusit/Squid</div>
+                        <div class="detail-value">Tough, stays on hook. Cut strips. ₱20-50 each. Target: Grouper, snapper.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Tamban/Sardines</div>
+                        <div class="detail-value">Oily, attracts fish. Whole or chunks. ₱100-200/kg. Target: Big predators.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Crabs (Alimasag)</div>
+                        <div class="detail-value">Cut in half, hook through shell. ₱30-80 each. Target: Grouper, emperor.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🐛 Live Baits (Freshwater)</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Earthworms</div>
+                        <div class="detail-value">Universal bait. Thread on hook. ₱50-100/cup. Target: Tilapia, catfish, all.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Small Live Fish</div>
+                        <div class="detail-value">For predators. Hook through lips. ₱5-20 each. Target: Snakehead, bass.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Crickets/Grasshoppers</div>
+                        <div class="detail-value">Catch yourself. Hook through body. Free! Target: Panfish, tilapia.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Bread Balls</div>
+                        <div class="detail-value">Cheap effective. Roll tight. ₱0-50. Target: Tilapia, carp.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎣 Bait Preparation Tips</h3>
+                <p><strong>Shrimp:</strong> Remove head for scent trail, keep tail for movement. Hook through tail section.<br><strong>Squid:</strong> Cut into 1-2 inch strips. Score flesh for scent release.<br><strong>Fish chunks:</strong> Cut diagonal pieces. Skin side out. Fresh is best but frozen works.<br><strong>Worms:</strong> Keep cool and moist. Thread multiple small worms or one large one.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🧊 Keeping Bait Fresh</h3>
+                <p><strong>Live bait:</strong> Aerated bucket with seawater/freshwater. Change water every 2 hours. Keep in shade.<br><strong>Dead bait:</strong> Ice chest with ice. Separate by type in bags. Salt helps preserve squid/fish.<br><strong>At home:</strong> Freeze unused bait in portions. Label with date. Use within 3 months.</p>
+            </div>
+            
+            <div class="rod-card">
+                <h3>🎨 Artificial Lures Guide</h3>
+                <div class="rod-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Soft Plastics</div>
+                        <div class="detail-value">Realistic action. Grubs, worms, shads. ₱50-300. Colors: natural in clear water, bright in murky.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Crankbaits</div>
+                        <div class="detail-value">Diving hard baits. Wobble action. ₱200-800. Depths: shallow, medium, deep diving.</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Poppers (Topwater)</div>
+                        <div class="detail-value">Surface lures. Create splash/noise. ₱300-1,500. Best dawn/dusk. Explosive strikes!</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Spoons/Jigs</div>
+                        <div class="detail-value">Metal lures. Flash and vibration. ₱100-2,000. Work all depths. Very versatile.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎨 Lure Color Selection</h3>
+                <p><strong>Clear water:</strong> Natural colors (silver, white, clear, light brown). Match local baitfish.<br><strong>Murky water:</strong> Bright colors (chartreuse, orange, pink). Create visibility and vibration.<br><strong>Low light:</strong> Dark colors (black, purple, blue). Better silhouette.<br><strong>Sunny day:</strong> Flash and sparkle (chrome, gold). Mimic scales reflecting light.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🍚 Homemade Baits</h3>
+                <p><strong>Tilapia dough:</strong> Mix flour, cornmeal, water into paste. Add fish oil. Roll into balls.<br><strong>Chicken liver:</strong> Wrap in nylon mesh. Strong smell for catfish.<br><strong>Rice balls:</strong> Cook rice, add salt, roll tight. Cheap and effective.<br><strong>Hotdog pieces:</strong> Cut small chunks. Kids love this, and so do fish!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Matching Bait to Target</h3>
+                <p><strong>Tilapia:</strong> Bread, worms, corn, rice<br><strong>Catfish:</strong> Chicken liver, shrimp, cut fish<br><strong>Snakehead:</strong> Live fish, frogs, large worms<br><strong>Grouper:</strong> Squid, shrimp, small fish<br><strong>Tuna:</strong> Live bait, metal jigs<br><strong>Bass:</strong> Soft plastics, crankbaits, topwater</p>
+            </div>
+        </div>
+        
+        <div id="knots" class="content">
+            <div class="tip-box">
+                <h3>🪢 Improved Clinch Knot</h3>
+                <p><strong>Use:</strong> Tying hooks, lures, swivels to line<br><strong>Strength:</strong> 95% line strength<br><strong>Steps:</strong> 1) Thread line through eye. 2) Wrap tag end around main line 5-7 times. 3) Thread tag through small loop near eye. 4) Thread tag through large loop. 5) Wet and tighten slowly. 6) Trim excess.<br><strong>Tip:</strong> Most popular fishing knot. Master this first!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Palomar Knot</h3>
+                <p><strong>Use:</strong> Strongest knot for hooks and lures<br><strong>Strength:</strong> 95-100% line strength<br><strong>Steps:</strong> 1) Double 6" of line, push loop through eye. 2) Tie overhand knot with loop. 3) Pass hook/lure through loop. 4) Wet and tighten. 5) Trim excess.<br><strong>Tip:</strong> Works great with braided line. Very reliable!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Uni Knot (Duncan Loop)</h3>
+                <p><strong>Use:</strong> Versatile - hooks, swivels, joining lines<br><strong>Strength:</strong> 90% line strength<br><strong>Steps:</strong> 1) Thread line and form loop alongside main line. 2) Wrap tag end through loop and around both lines 5-6 times. 3) Pull tag to tighten coils. 4) Slide knot to eye. 5) Trim excess.<br><strong>Tip:</strong> Easy to tie in low light. Great all-rounder!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Double Surgeon's Knot</h3>
+                <p><strong>Use:</strong> Joining two lines (leader to main line)<br><strong>Strength:</strong> 90% line strength<br><strong>Steps:</strong> 1) Overlap lines 6-8 inches. 2) Form loop with both lines. 3) Pass both ends through loop twice. 4) Wet and pull all four ends slowly. 5) Trim excess close.<br><strong>Tip:</strong> Quick and easy for connecting different line types!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Loop Knot (Rapala Knot)</h3>
+                <p><strong>Use:</strong> Allows lure to move freely<br><strong>Strength:</strong> 85-90% line strength<br><strong>Steps:</strong> 1) Tie overhand knot 6" from end. 2) Thread tag through lure eye then through overhand knot. 3) Wrap tag around main line 3-4 times. 4) Thread back through overhand knot. 5) Wet and tighten carefully.<br><strong>Tip:</strong> Best for maximum lure action!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Arbor Knot</h3>
+                <p><strong>Use:</strong> Attaching line to reel spool<br><strong>Steps:</strong> 1) Wrap line around spool. 2) Tie overhand knot around main line. 3) Tie second overhand knot at tag end. 4) Pull main line tight. Knots slide together. 5) Trim excess.<br><strong>Tip:</strong> Simple but secure. First knot you tie when spooling!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Blood Knot</h3>
+                <p><strong>Use:</strong> Joining lines of similar diameter<br><strong>Strength:</strong> 85% line strength<br><strong>Steps:</strong> 1) Overlap lines 6". 2) Wrap one tag 5 times around other line. 3) Bring tag back, thread through center opening. 4) Repeat with other tag in opposite direction. 5) Wet and pull slowly.<br><strong>Tip:</strong> Creates smooth, slim connection. Takes practice!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🪢 Dropper Loop</h3>
+                <p><strong>Use:</strong> Creating loop in middle of line for multi-hook rigs<br><strong>Steps:</strong> 1) Form loop in line. 2) Hold loop and twist main line 5-6 times. 3) Pull middle of original loop through center opening. 4) Pull loop and both ends slowly. 5) Loop stands perpendicular to line.<br><strong>Tip:</strong> Attach additional hooks for targeting multiple depths!</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🎯 Knot Tying Tips</h3>
+                <p><strong>Always wet knots:</strong> Use saliva or water before tightening. Reduces friction and heat.<br><strong>Pull slowly:</strong> Fast pulls weaken knots. Steady pressure is key.<br><strong>Trim close:</strong> Leave 1/8" tag. Too short = slips. Too long = snags.<br><strong>Test pulls:</strong> After tying, pull hard. Better to break at home than on a fish!<br><strong>Practice at home:</strong> Tie 10 times each until muscle memory. Speed comes with practice.</p>
+            </div>
+            
+            <div class="tip-box">
+                <h3>🔍 Checking Your Knots</h3>
+                <p><strong>Visual check:</strong> Coils neat and tight? No overlaps or gaps?<br><strong>Pull test:</strong> Hold hook/lure and pull line hard. Should hold 100%.<br><strong>Re-tie often:</strong> After catching fish, after snags, every 2-3 hours fishing.<br><strong>Line damage:</strong> If knot area looks kinked or frayed, cut and re-tie immediately.<br><strong>Remember:</strong> 90% of lost fish are due to bad knots, not weak line!</p>
+            </div>
+        </div>
+        
+        <footer>
+            Made for Filipino Anglers 🇵🇭 | Tight lines and good catches!
+        </footer>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>
